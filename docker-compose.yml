@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+
+  api:
+    build:
+      context: .
+    networks:
+      - backend_api_net
+    ports:
+      - "80:80"
+    env_file:
+      - ./local.env
+      - ./postgres/local.env
+    volumes:
+      - ./app:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    networks:
+      - backend_api_net
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/pgdata:/var/lib/postgresql/data/pgdata
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    env_file:
+      - ./postgres/local.env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
+networks:
+  backend_api_net:
+    name: backend_api_net

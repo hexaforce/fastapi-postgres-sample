@@ -1,0 +1,62 @@
+name: Escher-API application
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  DB_CACHE_PATH: postgres-image
+  DB_VERSION: 10
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache a postgres Docker image
+        id: cache-postgres
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.DB_CACHE_PATH }}
+          key: ${{ runner.os }}-postgres-${{ env.DB_VERSION }}
+
+      - name: Pull and save a Postgres Docker image
+        if: steps.cache-postgres.outputs.cache-hit != 'true'
+        run: |
+          docker pull postgres:${DB_VERSION}
+          docker save postgres:${DB_VERSION} -o ${DB_CACHE_PATH}
+
+      - name: Load docker images
+        run: |
+          docker load -i ${DB_CACHE_PATH}
+
+      - name: Create local env file
+        shell: bash
+        run: |
+          touch local.env
+          # echo "POSTGRES_SERVER=${{ secrets.POSTGRES_SERVER }}" >> local.env
+          # echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> local.env
+          # echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> local.env
+          # echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> local.env
+          # echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> local.env
+          echo "POSTGRES_SERVER=postgres" >> local.env
+          echo "POSTGRES_PORT=5432" >> local.env
+          echo "POSTGRES_USER=postgres" >> local.env
+          echo "POSTGRES_PASSWORD=password" >> local.env
+          echo "POSTGRES_DB=POSTGRES_DB=example" >> local.env
+
+      - name: Lunch up test stack
+        run: |
+          docker-compose up -d --remove-orphans
+
+      - name: Sleep for 20 seconds
+        run: sleep 20s
+        shell: bash
+
+      - name: Test start !!
+        run: |
+          docker-compose exec -T api pytest /app/tests
