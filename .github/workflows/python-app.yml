@@ -1,4 +1,4 @@
-name: Escher-API application
+name: Example-API application
 
 on:
   push:

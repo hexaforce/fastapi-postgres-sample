@@ -1,2 +1,2 @@
 from .idtoken import IdToken
-from .endpoints import app
+from .routes import app
