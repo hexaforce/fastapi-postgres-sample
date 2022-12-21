@@ -3,12 +3,11 @@ from typing import List
 from typing import Optional
 from typing import TypeVar
 
-from sqlalchemy.orm import Session
-
-from db.base_crud import CRUDBase
-from db.base_class import Base
-from db import model
 from api import schemas
+from db import model
+from db.base_class import Base
+from db.base_crud import CRUDBase
+from sqlalchemy.orm import Session
 
 ModelType = TypeVar("ModelType", bound=Base)
 

@@ -1,8 +1,7 @@
-from fastapi import APIRouter
-from fastapi import FastAPI
-
 from api.endpoint import company
 from api.endpoint import product
+from fastapi import APIRouter
+from fastapi import FastAPI
 
 app = FastAPI(
   title="V1"

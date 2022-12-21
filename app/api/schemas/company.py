@@ -1,8 +1,10 @@
 from datetime import datetime
 from typing import List
 from typing import Optional
-from pydantic import BaseModel
 from uuid import UUID
+
+from pydantic import BaseModel
+
 
 # Shared properties
 class CompanyBase(BaseModel):

@@ -1,13 +1,12 @@
 import json
 from logging import getLogger
 
+from config import settings
+from db import crud
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
-
-from db import crud
-from config import settings
-from utils.test_utils import random_lower_string
 from utils.test_utils import headers_token
+from utils.test_utils import random_lower_string
 
 logger = getLogger("company")
 ENDPOINT = f'http://api/v1/company'

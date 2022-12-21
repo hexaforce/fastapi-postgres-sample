@@ -1,12 +1,12 @@
 import logging
 
+from db.session import session_main
+from db.session import session_test
 from tenacity import after_log
 from tenacity import before_log
 from tenacity import retry
 from tenacity import stop_after_attempt
 from tenacity import wait_fixed
-
-from db.session import session_main,session_test
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

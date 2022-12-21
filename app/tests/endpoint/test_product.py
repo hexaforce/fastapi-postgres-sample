@@ -2,14 +2,13 @@ import json
 from logging import getLogger
 
 import pytest
-from fastapi.testclient import TestClient
-from sqlalchemy.orm import Session
-
-from db import crud
 from api import schemas
 from config import settings
-from utils.test_utils import random_lower_string
+from db import crud
+from fastapi.testclient import TestClient
+from sqlalchemy.orm import Session
 from utils.test_utils import headers_token
+from utils.test_utils import random_lower_string
 
 logger = getLogger("product")
 ENDPOINT = f'http://api/v1/product'

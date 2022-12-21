@@ -1,7 +1,9 @@
 from datetime import datetime
 from typing import List
 from typing import Optional
+
 from pydantic import BaseModel
+
 
 # Shared properties
 class ProductBase(BaseModel):

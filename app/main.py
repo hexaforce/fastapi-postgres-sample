@@ -1,8 +1,7 @@
+from api import app as v1
+from config import settings
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-
-from config import settings
-from api import app as v1
 
 app = FastAPI()
 

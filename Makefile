@@ -22,3 +22,6 @@ revision:
 
 model:
 	sqlacodegen postgresql://postgres:password@localhost/example > app/db/model.py
+
+isort:
+	isort --force-single-line-imports app/

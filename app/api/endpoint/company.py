@@ -1,15 +1,14 @@
 from typing import Any
 from typing import List
+from uuid import UUID
 
+from api import deps
+from api import schemas
+from db import crud
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-
-from db import crud
-from api import schemas
-from api import deps
-from uuid import UUID
 
 router = APIRouter(prefix="/company", tags=["Company"])
 
