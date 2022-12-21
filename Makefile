@@ -17,3 +17,5 @@ del:
 test:
 	docker compose exec -T api pytest ./app/tests
 
+revision:
+	docker compose exec -T -w / api alembic -x target=main revision --autogenerate
