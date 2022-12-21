@@ -1,9 +1,7 @@
 import json
 from logging import getLogger
 
-import pytest
 from api import schemas
-from config import settings
 from db import crud
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session

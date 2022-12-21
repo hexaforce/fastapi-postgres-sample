@@ -5,7 +5,6 @@ from typing import List
 from typing import Optional
 
 from pydantic import BaseSettings
-from pydantic import EmailStr
 from pydantic import PostgresDsn
 from pydantic import validator
 
