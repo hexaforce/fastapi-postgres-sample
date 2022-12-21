@@ -18,7 +18,7 @@ services:
       - postgres
 
   db:
-    image: postgres:latest
+    image: postgres
     networks:
       - backend_api_net
     ports:

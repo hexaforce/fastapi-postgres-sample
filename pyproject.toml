@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fastapi-sample"
+name = "fastapi-postgres-sample"
 version = "0.1.0"
 description = ""
 authors = ["tantaka <tomokazu.tantaka@glpgs.com>"]
