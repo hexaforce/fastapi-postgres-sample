@@ -13,3 +13,7 @@ down:
 
 del:
 	docker system prune -a --volumes
+
+test:
+	docker compose exec -T api pytest ./app/tests
+

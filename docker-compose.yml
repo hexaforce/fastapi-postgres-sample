@@ -17,7 +17,7 @@ services:
     depends_on:
       - postgres
 
-  postgres:
+  db:
     image: postgres:latest
     networks:
       - backend_api_net
