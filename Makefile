@@ -1,12 +1,15 @@
 
 upf:
-	docker-compose up --build
+	docker compose up --build
 
 up:
-	docker-compose up -d --build
+	docker compose up -d --build
 
 log:
-	docker-compose logs -f
+	docker compose logs -f
 
 down:
-	docker-compose down
+	docker compose down
+
+del:
+	docker system prune -a --volumes
