@@ -9,7 +9,10 @@ poetry update
 ```
 
 
-
+# Test
+```
+make test
+```
 
 
 
