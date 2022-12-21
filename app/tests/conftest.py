@@ -10,6 +10,7 @@ from main import app
 def db() -> Generator:
     yield session_main()
 
+
 @pytest.fixture(scope="module")
 def client() -> Generator:
     with TestClient(app) as c:
