@@ -8,6 +8,7 @@ from pydantic import BaseModel
 class CompanyBase(BaseModel):
     pass
 
+
 # -------------------------------------------------------------
 # --- read ----------------------------------------------------
 # -------------------------------------------------------------
@@ -22,26 +23,30 @@ class CompanyInDBBase(CompanyBase):
     class Config:
         orm_mode = True
 
+
 # Properties to return to client
 class Company(CompanyInDBBase):
     pass
+
 
 # Properties properties stored in DB
 class CompanyInDB(CompanyInDBBase):
     pass
 
+
 # -------------------------------------------------------------
 # --- creation ------------------------------------------------
 # -------------------------------------------------------------
 
-  # Properties to receive on Company creation
+# Properties to receive on Company creation
 class CompanyCreate(CompanyBase):
     sf_account_id: str
+
 
 # -------------------------------------------------------------
 # --- update --------------------------------------------------
 # -------------------------------------------------------------
 
-  # Properties to receive on Company update
+# Properties to receive on Company update
 class CompanyUpdate(CompanyBase):
     sf_account_id: Optional[str]

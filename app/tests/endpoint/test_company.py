@@ -8,7 +8,7 @@ from utils.test_utils import headers_token
 from utils.test_utils import random_lower_string
 
 logger = getLogger("company")
-ENDPOINT = f'http://api/v1/company'
+ENDPOINT = f"http://api/v1/company"
 
 # -------------------------------------------------------------
 # --- check ---------------------------------------------------
@@ -17,6 +17,7 @@ def check(db: Session, id: str, expected: dict[str, str]):
     actual = crud.company.get(db=db, id=id)
     assert actual
     assert actual.sf_account_id == expected.get("sf_account_id")
+
 
 # -------------------------------------------------------------
 # --- TEST ----------------------------------------------------
@@ -45,7 +46,7 @@ def test_company(client: TestClient, db: Session) -> None:
     check(db, id, data)
 
     # DELETE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    r = client.delete(f'{ENDPOINT}/{id}', headers=headers_token())
+    r = client.delete(f"{ENDPOINT}/{id}", headers=headers_token())
     assert 200 <= r.status_code < 300
     new_data = crud.company.get(db=db, id=id)
     assert not new_data

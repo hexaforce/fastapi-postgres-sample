@@ -24,6 +24,7 @@ def create_product(
 ) -> Any:
     return crud.product.create(db=db, obj_in=obj_in)
 
+
 # -------------------------------------------------------------
 # --- READ ----------------------------------------------------
 # -------------------------------------------------------------
@@ -37,6 +38,7 @@ def read_product(
     UUID(id)
     return getById(db=db, id=id)
 
+
 # -------------------------------------------------------------
 # --- READ(all) -----------------------------------------------
 # -------------------------------------------------------------
@@ -49,6 +51,7 @@ def read_products(
     limit: int = 100,
 ) -> Any:
     return crud.product.get_multi(db, skip=skip, limit=limit)
+
 
 # -------------------------------------------------------------
 # --- UPDATE --------------------------------------------------
@@ -66,6 +69,7 @@ def update_product(
     obj = getById(db=db, id=id)
     return crud.product.update(db=db, db_obj=obj, obj_in=obj_in)
 
+
 # -------------------------------------------------------------
 # --- DELETE --------------------------------------------------
 # -------------------------------------------------------------
@@ -81,7 +85,8 @@ def delete_product(
     obj = getById(db=db, id=id)
     return crud.product.remove(db=db, id=id)
 
-def getById(db:Session ,id: str):    
+
+def getById(db: Session, id: str):
     obj = crud.product.get(db=db, id=id)
     if not obj:
         raise HTTPException(status_code=204, detail="product not found")

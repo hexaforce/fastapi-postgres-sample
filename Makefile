@@ -28,3 +28,9 @@ isort:
 
 autoflake:
 	autoflake --remove-all-unused-imports --recursive --remove-unused-variables --in-place app/ --exclude=__init__.py
+
+black:
+	black --check --verbose --exclude="model.py" app/
+
+flake8:
+	flake8 app/

@@ -22,13 +22,16 @@ class Settings(BaseSettings):
 
     NLUCLUSTER_SECRET: Optional[str] = None
     DATABASE_URI: List[Optional[PostgresDsn]] = None
+
     @validator("DATABASE_URI", pre=True)
-    def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> List[Any]:
+    def assemble_db_connection(
+        cls, v: Optional[str], values: Dict[str, Any]
+    ) -> List[Any]:
         if isinstance(v, str):
             return v
 
         secret = values.get("NLUCLUSTER_SECRET")
-        if secret is None: 
+        if secret is None:
             # localhost
             user = values.get("POSTGRES_USER")
             password = values.get("POSTGRES_PASSWORD")
@@ -43,7 +46,7 @@ class Settings(BaseSettings):
             host = secret_json["host"]
             port = str(secret_json["port"])
             db_name = secret_json["dbname"]
-        
+
         return [
             # MAIN DB
             PostgresDsn.build(
@@ -54,7 +57,6 @@ class Settings(BaseSettings):
                 port=port,
                 path=f"/{db_name}",
             ),
-
             # TEST DB
             PostgresDsn.build(
                 scheme="postgresql",
@@ -88,5 +90,6 @@ class Settings(BaseSettings):
 
     # class Config:
     #     case_sensitive = True
-    
+
+
 settings = Settings()

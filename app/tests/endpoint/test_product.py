@@ -9,7 +9,7 @@ from utils.test_utils import headers_token
 from utils.test_utils import random_lower_string
 
 logger = getLogger("product")
-ENDPOINT = f'http://api/v1/product'
+ENDPOINT = f"http://api/v1/product"
 
 # -------------------------------------------------------------
 # --- check ---------------------------------------------------
@@ -26,10 +26,10 @@ def check(db: Session, id: str, expected: dict[str, str]):
 # -------------------------------------------------------------
 def test_product(client: TestClient, db: Session) -> None:
 
-    company_id = crud.company.create(db=db, obj_in=schemas.CompanyCreate(
-      sf_account_id=random_lower_string()
-    )).id
-    
+    company_id = crud.company.create(
+        db=db, obj_in=schemas.CompanyCreate(sf_account_id=random_lower_string())
+    ).id
+
     # CREATE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     data = {
         "company_id": company_id,
@@ -55,7 +55,7 @@ def test_product(client: TestClient, db: Session) -> None:
     check(db, id, data)
 
     # DELETE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    r = client.delete(f'{ENDPOINT}/{id}', headers=headers_token())
+    r = client.delete(f"{ENDPOINT}/{id}", headers=headers_token())
     assert 200 <= r.status_code < 300
     new_data = crud.product.get(db=db, id=id)
     assert not new_data

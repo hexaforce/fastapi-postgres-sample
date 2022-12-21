@@ -17,8 +17,8 @@ from .idtoken import IdToken
 # from fastapi_csrf_protect.exceptions import TokenValidationError
 
 
-
 auth_token = APIKeyHeader(name="authorization", auto_error=False)
+
 
 def get_db_session(request: Request) -> Generator:
     db_mode = request.headers.get("test")

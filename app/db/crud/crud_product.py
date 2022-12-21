@@ -11,8 +11,10 @@ from sqlalchemy.orm import Session
 
 ModelType = TypeVar("ModelType", bound=Base)
 
-class CRUDProduct(CRUDBase[model.Product, schemas.ProductCreate, schemas.ProductUpdate]):
 
+class CRUDProduct(
+    CRUDBase[model.Product, schemas.ProductCreate, schemas.ProductUpdate]
+):
     def find_by_company_id(self, db: Session, company_id: Any) -> List[ModelType]:
         return db.query(self.model).filter(self.model.company_id == company_id).all()
 
@@ -25,5 +27,6 @@ class CRUDProduct(CRUDBase[model.Product, schemas.ProductCreate, schemas.Product
             .filter(self.model.product_name == product_name)
             .first()
         )
+
 
 product = CRUDProduct(model.Product)

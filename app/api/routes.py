@@ -3,9 +3,7 @@ from api.endpoint import product
 from fastapi import APIRouter
 from fastapi import FastAPI
 
-app = FastAPI(
-  title="V1"
-)
+app = FastAPI(title="V1")
 
 api_router = APIRouter()
 

@@ -24,6 +24,7 @@ def create_company(
 ) -> Any:
     return crud.company.create(db=db, obj_in=obj_in)
 
+
 # -------------------------------------------------------------
 # --- READ ----------------------------------------------------
 # -------------------------------------------------------------
@@ -37,6 +38,7 @@ def read_company(
     UUID(id)
     return getById(db=db, id=id)
 
+
 # -------------------------------------------------------------
 # --- READ(all) -----------------------------------------------
 # -------------------------------------------------------------
@@ -49,6 +51,7 @@ def read_companies(
     limit: int = 100,
 ) -> Any:
     return crud.company.get_multi(db, skip=skip, limit=limit)
+
 
 # -------------------------------------------------------------
 # --- UPDATE --------------------------------------------------
@@ -66,6 +69,7 @@ def update_company(
     obj = getById(db=db, id=id)
     return crud.company.update(db=db, db_obj=obj, obj_in=obj_in)
 
+
 # -------------------------------------------------------------
 # --- DELETE --------------------------------------------------
 # -------------------------------------------------------------
@@ -82,7 +86,7 @@ def delete_company(
     return crud.company.remove(db=db, id=id)
 
 
-def getById(db:Session ,id: str):    
+def getById(db: Session, id: str):
     obj = crud.company.get(db=db, id=str(id))
     if not obj:
         raise HTTPException(status_code=204, detail="company not found")

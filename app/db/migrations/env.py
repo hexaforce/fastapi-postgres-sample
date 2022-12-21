@@ -27,8 +27,10 @@ target_metadata = Base.metadata
 
 target = context.get_x_argument(as_dictionary=True).get("target")
 
+
 def get_url():
     return settings.DATABASE_URI
+
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
@@ -46,9 +48,9 @@ def run_migrations_offline() -> None:
     urls = get_url()
 
     if target == "main":
-        url=urls[0]
+        url = urls[0]
     elif target == "test":
-        url=urls[1]
+        url = urls[1]
     else:
         raise SystemError("'target' option is required. `main` or `test`")
 
@@ -69,7 +71,7 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
-    
+
     urls = get_url()
 
     if target == "main":
@@ -85,9 +87,7 @@ def run_migrations_online() -> None:
             context.run_migrations()
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

@@ -8,6 +8,7 @@ from pydantic import BaseModel
 class ProductBase(BaseModel):
     pass
 
+
 # -------------------------------------------------------------
 # --- read ----------------------------------------------------
 # -------------------------------------------------------------
@@ -24,13 +25,16 @@ class ProductInDBBase(ProductBase):
     class Config:
         orm_mode = True
 
+
 # Properties to return to client
 class Product(ProductInDBBase):
     pass
 
+
 # Properties properties stored in DB
 class ProductInDB(ProductInDBBase):
     pass
+
 
 # -------------------------------------------------------------
 # --- creation ------------------------------------------------
@@ -41,6 +45,7 @@ class ProductCreate(ProductBase):
     company_id: str
     product_name: str
     hearing_complete: Optional[bool]
+
 
 # -------------------------------------------------------------
 # --- update --------------------------------------------------

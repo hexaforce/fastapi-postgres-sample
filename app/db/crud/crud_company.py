@@ -11,8 +11,9 @@ from sqlalchemy.orm import Session
 ModelType = TypeVar("ModelType", bound=Base)
 
 
-class CRUDCompany(CRUDBase[model.Company, schemas.CompanyCreate, schemas.CompanyUpdate]):
-  
+class CRUDCompany(
+    CRUDBase[model.Company, schemas.CompanyCreate, schemas.CompanyUpdate]
+):
     def find_by_sf_account_id(
         self, db: Session, sf_account_id: Any
     ) -> Optional[ModelType]:
@@ -21,5 +22,6 @@ class CRUDCompany(CRUDBase[model.Company, schemas.CompanyCreate, schemas.Company
             .filter(self.model.sf_account_id == sf_account_id)
             .first()
         )
+
 
 company = CRUDCompany(model.Company)

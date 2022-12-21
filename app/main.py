@@ -19,6 +19,7 @@ app.mount(path="/v1", app=v1, name="v1")
 # app.mount(path=settings.API_V1_STR, app=app_v1, name="v1")
 # app.mount(path=settings.API_V2_STR, app=app_v2, name="v2")
 
+
 @app.get("/")
 async def read_root():
     return "OK"
@@ -37,6 +38,3 @@ async def read_root():
 # async def read_root():
 #     message = f"Hello world! From FastAPI running on Uvicorn with Gunicorn. Using Python {version}"
 #     return {"message": message}
-
-
-
