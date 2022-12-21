@@ -21,7 +21,7 @@ revision:
 	docker compose exec -T -w / api alembic -x target=main revision --autogenerate
 
 model:
-	sqlacodegen postgresql://postgres:password@localhost/example > app/db/model.py
+	sqlacodegen postgresql://postgres:password@localhost/example > app/db/models.py
 
 isort:
 	isort --force-single-line-imports app/
